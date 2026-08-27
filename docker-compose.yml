@@ -1,0 +1,16 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: calificacion_cursos_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: calificacion_cursos
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./Backend/database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+volumes:
+  mysql_data:
