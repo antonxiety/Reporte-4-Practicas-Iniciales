@@ -36,10 +36,10 @@ function Home(){
   }
 
   return (
-    <div>
+    <div className="pagina">
       <h2>Muro de publicaciones</h2>
 
-      <form onSubmit={manejarBuscar} style={{ marginBottom: '1.5rem' }}>
+      <form onSubmit={manejarBuscar} className="filtros">
         <input
           name="curso"
           placeholder="Buscar por curso"
@@ -61,10 +61,10 @@ function Home(){
         <button type="submit">Buscar</button>
       </form>
 
-      {cargando && <p>Cargando publicaciones...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {cargando && <p className="estado-vacio">Cargando publicaciones...</p>}
+      {error && <p className="mensaje-error">{error}</p>}
       {!cargando && !error && publicaciones.length === 0 && (
-        <p>No hay publicaciones todavia</p>
+        <p className="estado-vacio">No hay publicaciones todavía.</p>
       )}
 
       {publicaciones.map((pub) => (
@@ -73,5 +73,6 @@ function Home(){
     </div>
   );
 }
+
 
 export default Home;

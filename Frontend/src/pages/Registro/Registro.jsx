@@ -8,7 +8,7 @@ function Registro(){
         nombres:'',
         apellidos:'',
         correo: '',
-        contrasena: '',
+        password: '',
     });
     const [error, setError] = useState('');
     const [cargando, setCargando] = useState(false);
@@ -33,38 +33,49 @@ function Registro(){
         }
     }
 
-    return(
-        <div>
-            <h2>Crear cuenta</h2>
+    return (
+        <div className="auth-layout">
+            <div className="auth-card">
+                <h2>Crear cuenta</h2>
+                <p className="subtitulo">Registrate con tus datos academicos</p>
+
             <form onSubmit={manejarEnvio}>
-                <div>
-                    <label htmlFor="carne">Registro academico (carne)</label>
+                <div className="form-group">
+                    <label htmlFor="carne">Registro academico</label>
                     <input id="carne" name="carne" value={formulario.carne} onChange={manejarCambio} required />
                 </div>
-                <div>
+
+                <div className="form-group">
                     <label htmlFor="nombres">Nombres</label>
                     <input id="nombres" name="nombres" value={formulario.nombres} onChange={manejarCambio} required />
                 </div>
-                <div>
+
+                <div className="form-group">
                     <label htmlFor="apellidos">Apellidos</label>
                     <input id="apellidos" name="apellidos" value={formulario.apellidos} onChange={manejarCambio} required />
                 </div>
-                <div>
+
+                <div className="form-group">
                     <label htmlFor="correo">Correo electronico</label>
                     <input id="correo" name="correo" type="email" value={formulario.correo} onChange={manejarCambio} required />
                 </div>
-                <div>
-                    <label htmlFor="contrasena">Contraseña</label>
-                    <input id="contrasena" name="contrasena" type="password" value={formulario.contrasena} onChange={manejarCambio} required />
+
+                <div className="form-group">
+                    <label htmlFor="password">Contraseña</label>
+                    <input id="password" name="password" type="password" value={formulario.password} onChange={manejarCambio} required />
                 </div>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                <button type="submit" disabled={cargando}>
+
+            {error && <p className="mensaje-error">{error}</p>}
+
+                <button type="submit" className="btn-primario" disabled={cargando}>
                     {cargando ? 'Creando cuenta...' : 'Registrarme'}
                 </button>
             </form>
-            <p>
-                ¿Ya tienes cuenta? <Link to="/login">Inicia sesion</Link>
-            </p>
+
+                <div className="enlaces">
+                    <p>¿Ya tienes cuenta? <Link to="/login">Inicia sesion</Link></p>
+                </div>
+            </div>
         </div>
     );
 }
