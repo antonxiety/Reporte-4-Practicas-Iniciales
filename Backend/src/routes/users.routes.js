@@ -68,7 +68,6 @@ router.post('/:carne/courses', verificarToken, async (req, res) => {
 });
 
 // NUEVO: elimina un curso aprobado del expediente del usuario logueado.
-// El enunciado (5.3) pide explícitamente poder "agregar o eliminar" cursos aprobados.
 router.delete('/:carne/courses/:curso_id', verificarToken, async (req, res) => {
   if (req.usuario.carne !== req.params.carne) return res.status(403).json({ error: 'No autorizado' });
 
