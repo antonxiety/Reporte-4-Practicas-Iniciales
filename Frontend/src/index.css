@@ -1,3 +1,15 @@
+:root {
+  --color-bg: #FAFAF8;
+  --color-ink: #1C1F26;
+  --color-muted: #6B7280;
+  --color-accent: #1E4D8C;
+  --color-accent-hover: #163A69;
+  --color-border: #E4E2DC;
+  --color-error: #B3261E;
+  --font-heading: Georgia, 'Times New Roman', serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,11 +17,217 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
-  color: #1a1a1a;
-  background-color: #ffffff;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background-color: var(--color-bg);
+  line-height: 1.5;
 }
 
 a {
-  color: inherit;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.auth-layout {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 2rem;
+  background: #FFFFFF;
+}
+
+.auth-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.auth-card .subtitulo {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Formularios */
+.form-group {
+  margin-bottom: 1.1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 0.35rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  background: #FFFFFF;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+  border-color: var(--color-accent);
+}
+
+.btn-primario {
+  width: 100%;
+  padding: 0.7rem;
+  background: var(--color-accent);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primario:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+}
+
+.btn-primario:disabled {
+  background: var(--color-border);
+  color: var(--color-muted);
+  cursor: not-allowed;
+}
+
+.mensaje-error {
+  color: var(--color-error);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.auth-card .enlaces {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+/* Layout general de páginas internas (con contenido, no centradas) */
+.pagina {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.pagina h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Barra de filtros del muro */
+.filtros {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.filtros input {
+  flex: 1;
+  min-width: 140px;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.filtros input:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.filtros button {
+  padding: 0.55rem 1.2rem;
+  background: var(--color-accent);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filtros button:hover {
+  background: var(--color-accent-hover);
+}
+
+/* Tarjeta de publicación */
+.publicacion-card {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.publicacion-card .entidad {
+  font-weight: 600;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.publicacion-card .contenido {
+  color: var(--color-ink);
+  margin-bottom: 0.7rem;
+}
+
+.publicacion-card .meta {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.estado-vacio {
+  color: var(--color-muted);
+  text-align: center;
+  padding: 2rem 0;
+}
+.opciones-tipo {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.3rem;
+}
+
+.opciones-tipo label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
 }
