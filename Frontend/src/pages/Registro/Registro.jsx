@@ -24,7 +24,7 @@ function Registro(){
         setError('');
         setCargando(true);
         try{
-            await api.post('/auth/registro', formulario);
+            await api.post('/auth/register', formulario);
             navigate('/login');
         }catch (err){
             setError(err.response?.data?.error || 'No se pudo completar el registro');

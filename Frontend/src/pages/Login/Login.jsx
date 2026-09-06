@@ -18,7 +18,7 @@ function Login() {
             await login(carne, password);
             navigate('/');
         } catch(err){
-            setError(err.response?.data?.erorr || 'No se pudo iniciar sesion');
+            setError(err.response?.data?.error || 'No se pudo iniciar sesion');
         }finally{
             setCargando(false);
         }

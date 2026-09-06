@@ -11,12 +11,19 @@ export function AuthProvider({ children }) {
 
     async function login(carne, password) {
         const { data } = await api.post('/auth/login', { carne, password });
-        localStorage.setItem('usuario', JSON.stringify(data.usuario || data));
-        setUsuario(data.usuario || data);
-    }
+        const datosUsuario = data.usuario || data;
+        const token = data.token;
+
+        localStorage.setItem('usuario', JSON.stringify(datosUsuario));
+        if (token) {
+        localStorage.setItem('token', token);
+        }
+        setUsuario(datosUsuario);
+}
 
     function logout() {
         localStorage.removeItem('usuario');
+        localStorage.removeItem('token');
         setUsuario(null);
     }
 

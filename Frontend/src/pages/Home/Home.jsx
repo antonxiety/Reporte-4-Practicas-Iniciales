@@ -1,18 +1,26 @@
 import { useState, useEffect } from 'react';
 import api from '../../services/api';
 import PublicacionCard from "../../components/PublicacionCard";
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 function Home(){
   const [publicaciones, setPublicaciones] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState('');
   const [filtros, setFiltros] = useState({ curso: '', catedratico: '', texto: '' });
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
+function manejarSalir() {
+  logout();
+  navigate('/login');
+}
   async function cargarPublicaciones(filtrosActuales){
     setCargando(true);
     setError('');
     try{
-      const {data} = await api.get('/publicaciones', { params: filtrosActuales });
+      const {data} = await api.get('/posts', { params: filtrosActuales });
       setPublicaciones(data);
     } catch (err) {
       setError('No se pudieron cargar las publicaciones');
@@ -38,6 +46,7 @@ function Home(){
   return (
     <div className="pagina">
       <h2>Muro de publicaciones</h2>
+      
 
       <form onSubmit={manejarBuscar} className="filtros">
         <input
@@ -48,7 +57,7 @@ function Home(){
         />
         <input
           name="catedratico"
-          placeholder="Buscar por catedrático"
+          placeholder="Buscar por catedratico"
           value={filtros.catedratico}
           onChange={manejarCambioFiltro}
         />
@@ -64,7 +73,7 @@ function Home(){
       {cargando && <p className="estado-vacio">Cargando publicaciones...</p>}
       {error && <p className="mensaje-error">{error}</p>}
       {!cargando && !error && publicaciones.length === 0 && (
-        <p className="estado-vacio">No hay publicaciones todavía.</p>
+        <p className="estado-vacio">No hay publicaciones todavia.</p>
       )}
 
       {publicaciones.map((pub) => (

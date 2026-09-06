@@ -5,6 +5,6 @@ export const cursosMock = [
 ];
 
 export const catedraticosMock = [
-    { id: 1, nombres: 'María', apellidos: 'López' },
+    { id: 1, nombres: 'María', apellidos: 'Lopez' },
     { id: 2, nombres: 'Carlos', apellidos: 'Ramírez' },
 ];

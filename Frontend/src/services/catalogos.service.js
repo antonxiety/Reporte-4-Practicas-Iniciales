@@ -1,6 +1,7 @@
 import api from './api';
 import { cursosMock, catedraticosMock } from './mockData';
 
+const USAR_DATOS_PRUEBA = false;
 export async function obtenerCursos() {
   if (USAR_DATOS_PRUEBA) {
     return cursosMock;

@@ -231,3 +231,117 @@ h1, h2, h3 {
   resize: vertical;
   min-height: 100px;
 }
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  background: #FFFFFF;
+}
+
+.navbar .marca {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.navbar .enlaces-nav {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.navbar button {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.perfil-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.perfil-dato {
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.perfil-dato span {
+  color: var(--color-muted);
+  display: inline-block;
+  min-width: 110px;
+}
+
+.curso-aprobado-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.curso-aprobado-item button {
+  background: transparent;
+  border: none;
+  color: var(--color-error);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.total-creditos {
+  margin-top: 1rem;
+  font-weight: 600;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.8rem;
+}
+.comentarios-seccion {
+  margin-top: 0.8rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.8rem;
+}
+
+.comentario-item {
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-ink);
+}
+
+.comentario-item .autor {
+  font-weight: 600;
+  margin-right: 0.4rem;
+}
+
+.form-comentario {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+.form-comentario input {
+  flex: 1;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.form-comentario button {
+  padding: 0.5rem 0.9rem;
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}

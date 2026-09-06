@@ -15,17 +15,17 @@ function CrearPublicacion(){
     const [cargando, setCargando] = useState(false);
     const navigate = useNavigate();
 
-    useEffect(() =>{
-        async function cargarCatalogos(){
-            const [listaCursos, listarCatedraticos] = await Promise.all([
+    useEffect(() => {
+        async function cargarCatalogos() {
+            const [listaCursos, listaCatedraticos] = await Promise.all([
                 obtenerCursos(),
                 obtenerCatedraticos(),
             ]);
             setCursos(listaCursos);
             setCatedraticos(listaCatedraticos);
         }
-        cargarCatalogos();
-    }, []);
+    cargarCatalogos();
+}, []);
 
     async function manejarEnvio(e) {
         e.preventDefault();
@@ -40,7 +40,7 @@ function CrearPublicacion(){
         };
 
         try {
-            await api.post('/publicaciones', payload);
+            await api.post('/posts', payload);
             navigate('/');
         } catch (err) {
             setError(err.response?.data?.error || 'No se pudo crear la publicaion');
