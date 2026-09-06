@@ -1,26 +1,30 @@
 import { useState, useEffect } from 'react';
-import api from '../../services/api';
-import PublicacionCard from "../../components/PublicacionCard";
 import { Link, useNavigate } from 'react-router-dom';
+import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
+import { obtenerCursos, obtenerCatedraticos } from '../../services/catalogos.service';
+import PublicacionCard from '../../components/PublicacionCard';
 
-function Home(){
+function Home() {
   const [publicaciones, setPublicaciones] = useState([]);
+  const [cursos, setCursos] = useState([]);
+  const [catedraticos, setCatedraticos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState('');
-  const [filtros, setFiltros] = useState({ curso: '', catedratico: '', texto: '' });
+  const [filtros, setFiltros] = useState({ curso_id: '', catedratico_id: '', busqueda: '' });
   const { logout } = useAuth();
   const navigate = useNavigate();
 
-function manejarSalir() {
-  logout();
-  navigate('/login');
-}
-  async function cargarPublicaciones(filtrosActuales){
+  async function cargarPublicaciones(filtrosActuales) {
     setCargando(true);
     setError('');
-    try{
-      const {data} = await api.get('/posts', { params: filtrosActuales });
+    try {
+      const params = {};
+      if (filtrosActuales.curso_id) params.curso_id = filtrosActuales.curso_id;
+      if (filtrosActuales.catedratico_id) params.catedratico_id = filtrosActuales.catedratico_id;
+      if (filtrosActuales.busqueda) params.busqueda = filtrosActuales.busqueda;
+
+      const { data } = await api.get('/posts', { params });
       setPublicaciones(data);
     } catch (err) {
       setError('No se pudieron cargar las publicaciones');
@@ -31,6 +35,8 @@ function manejarSalir() {
 
   useEffect(() => {
     cargarPublicaciones(filtros);
+    obtenerCursos().then(setCursos);
+    obtenerCatedraticos().then(setCatedraticos);
   }, []);
 
   function manejarCambioFiltro(e) {
@@ -43,28 +49,40 @@ function manejarSalir() {
     cargarPublicaciones(filtros);
   }
 
+  function manejarSalir() {
+    logout();
+    navigate('/login');
+  }
+
   return (
     <div className="pagina">
       <h2>Muro de publicaciones</h2>
-      
+
+      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
+        <Link to="/publicaciones/nueva" className="btn-primario" style={{ display: 'inline-block', width: 'auto', padding: '0.6rem 1.2rem', textDecoration: 'none' }}>
+          + Nueva publicacion
+        </Link>
+      </div>
 
       <form onSubmit={manejarBuscar} className="filtros">
+        <select name="curso_id" value={filtros.curso_id} onChange={manejarCambioFiltro}>
+          <option value="">-- Todos los cursos --</option>
+          {cursos.map((c) => (
+            <option key={c.id} value={c.id}>{c.nombre}</option>
+          ))}
+        </select>
+
+        <select name="catedratico_id" value={filtros.catedratico_id} onChange={manejarCambioFiltro}>
+          <option value="">-- Todos los catedraticos --</option>
+          {catedraticos.map((c) => (
+            <option key={c.id} value={c.id}>{c.nombres} {c.apellidos}</option>
+          ))}
+        </select>
+
         <input
-          name="curso"
-          placeholder="Buscar por curso"
-          value={filtros.curso}
-          onChange={manejarCambioFiltro}
-        />
-        <input
-          name="catedratico"
-          placeholder="Buscar por catedratico"
-          value={filtros.catedratico}
-          onChange={manejarCambioFiltro}
-        />
-        <input
-          name="texto"
+          name="busqueda"
           placeholder="Buscar texto"
-          value={filtros.texto}
+          value={filtros.busqueda}
           onChange={manejarCambioFiltro}
         />
         <button type="submit">Buscar</button>
@@ -82,6 +100,5 @@ function manejarSalir() {
     </div>
   );
 }
-
 
 export default Home;

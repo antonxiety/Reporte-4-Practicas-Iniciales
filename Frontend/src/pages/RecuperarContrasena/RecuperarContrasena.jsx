@@ -17,7 +17,7 @@ function RecuperarContrasena() {
     setMensaje('');
     setCargando(true);
     try {
-        await api.post('/auth/recover-password', { carne, correo, newPassword });
+        await api.post('/auth/recover', { carne, correo, nuevaPassword: newPassword });
         setMensaje('Contraseña actualizada. Ya puedes iniciar sesión.');
         setTimeout(() => navigate('/login'), 1500);
     } catch (err) {

@@ -345,3 +345,24 @@ h1, h2, h3 {
   font-size: 0.85rem;
   cursor: pointer;
 }
+.perfil-form-editar {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.perfil-form-editar .acciones {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.btn-secundario {
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
